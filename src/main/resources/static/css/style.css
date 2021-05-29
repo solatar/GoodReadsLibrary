@@ -1,0 +1,25 @@
+
+body {
+  background-color: #79d2a6;
+  font-family: Verdana, Helvetica, sans-serif;
+}
+
+h2 {
+  color: #0d261a;
+  text-align: left;
+}
+
+table {
+  border: 2px solid black;
+  background-color: #9fdfbf;
+}  
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid black;
+}
+
+tr:nth-child(even) {
+    background-color: #d9f2e6;
+}
