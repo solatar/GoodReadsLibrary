@@ -2,7 +2,7 @@ package library;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import library.controller.BookController;
+import library.controller.LibraryController;
 import library.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 public class LibraryApplication {
     
     @Autowired
-    BookController controller;
+    LibraryController controller;
     
     @Autowired
     Book model;

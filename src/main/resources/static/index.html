@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>Home page</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link th:href="@{/style.css}" rel="stylesheet" />
+        <style>
+        body {
+          background-image: url('eugenio-mazzone.jpg');
+        }
+        </style>
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <a href="showBooks">Show books</a>
+        <div class="container text-center">
+            <h1>Welcome to goodReads Library!</h1>
+            <a href="showBooks">Show books</a>
+            <p>Click <a href="ownPage">here</a> to log in to your account.</p>
+            <p>Have no account? <a href="register">Create</a> one. </p>
+        </div>
     </body>
 </html>
