@@ -1,40 +1,64 @@
 package library.entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
 @Table(name = "users")
+@EntityListeners(AuditingEntityListener.class)
 public class User {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String name;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
+    @Column(name = "username", nullable = false)
+    private String username;
+    
+    @Column(name = "password", length = 125, nullable = false)
     private String password;
+    
+    @Column(name = "type", nullable = false)
     private int type;
-
+    
+    @OneToOne(mappedBy = "user")
+    private Loan loan;
+    
     public User() {
         
     }
     
-    public User(String name, String password, int role) {
-        this.name = name;
+    public User(String name, String password, int type) {
+        this.username = name;
         this.password = password;
-        this.type = role;
+        this.type = type;
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -53,6 +77,14 @@ public class User {
         this.type = type;
     }
 
+    public Loan getLoan() {
+        return loan;
+    }
+
+    public void setLoan(Loan loan) {
+        this.loan = loan;
+    }    
+
     @Override
     public String toString() {
         String userType;
@@ -61,6 +93,6 @@ public class User {
         } else {
             userType = "customer";
         }
-        return "User: " + this.name + ", role: " + userType;
+        return "User: " + this.username + ", role: " + userType;
     }        
 }
