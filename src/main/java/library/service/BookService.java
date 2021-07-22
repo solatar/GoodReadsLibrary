@@ -11,11 +11,15 @@ import org.springframework.stereotype.Service;
 public class BookService implements IBookService {
     
     @Autowired
-    BookRepository repository;
-    
+    BookRepository bookRepo;
+      
     @Override
     public List<Book> findAll() {
-       var books = (List<Book>) repository.findAll();
+       var books = (List<Book>) bookRepo.findAll();       
        return books;
     }
+
+
+
+    
 }

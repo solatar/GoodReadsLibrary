@@ -5,9 +5,10 @@
         <link rel="stylesheet" th:href="@{/css/style.css}">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <a rel="stylesheet" href="style.css"/>
-    </head>
-    
+
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    </head>  
    
     <body> 
         <h2>List of books in our library</h2>
@@ -16,12 +17,18 @@
                 <th>Id</th>
                 <th>Author</th>
                 <th>Title</th>
+                <th>Availability</th>
             </tr>            
             <tr th:each="book : ${books}">    
                 <td th:text="${book.id}">Id</td>
                 <td th:text="${book.author}">Author</td>
                 <td th:text="${book.title}">Title</td>
+                <td th:text="${book.status}">Availability</td>
             </tr>
         </table>
+        <a href="borrow">Borrowing form</a>
+
+        
+
     </body>
 </html>

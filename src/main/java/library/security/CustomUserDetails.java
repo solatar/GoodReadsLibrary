@@ -1,22 +1,32 @@
 package library.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import library.entity.Role;
 import library.entity.User;
  
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
  
-public class CustomUserDetails implements UserDetails {
+public class CustomUserDetails extends User implements UserDetails {
  
     private User user;
      
     public CustomUserDetails(User user) {
         this.user = user;
     }
- 
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<Role> roles = user.getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for (Role role : roles) {
+            System.out.println(role);
+            authorities.add(new SimpleGrantedAuthority(role.getDescription()));
+        }     
+        return authorities;    
     }
  
     @Override

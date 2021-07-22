@@ -1,22 +1,26 @@
 package library.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
 @Table(name = "users")
-@EntityListeners(AuditingEntityListener.class)
-public class User {
+public class User implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,20 +32,25 @@ public class User {
     @Column(name = "password", length = 125, nullable = false)
     private String password;
     
-    @Column(name = "type", nullable = false)
-    private int type;
-    
-    @OneToOne(mappedBy = "user")
-    private Loan loan;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="user")
+    private List<Loan> loans;
+   
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
     
     public User() {
-        
+        loans = new ArrayList<>();
+        roles = new ArrayList<>();
     }
-    
-    public User(String name, String password, int type) {
+      
+    public User(String name, String password) {
         this.username = name;
         this.password = password;
-        this.type = type;
     }
 
     public int getId() {
@@ -51,7 +60,6 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
-
     
     public String getUsername() {
         return username;
@@ -69,30 +77,25 @@ public class User {
         this.password = password;
     }
 
-    public int getType() {
-        return type;
+    public List<Loan> getLoans() {
+        return loans;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
     }
 
-    public Loan getLoan() {
-        return loan;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setLoan(Loan loan) {
-        this.loan = loan;
-    }    
-
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+       
     @Override
     public String toString() {
-        String userType;
-        if (this.type == 2) {
-            userType = "librarian";
-        } else {
-            userType = "customer";
-        }
-        return "User: " + this.username + ", role: " + userType;
+        return "User: " + this.username;
     }        
 }
+

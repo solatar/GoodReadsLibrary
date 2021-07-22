@@ -1,5 +1,6 @@
 package library.service;
 
+import java.util.Optional;
 import library.entity.User;
 import library.repository.UserRepository;
 import library.security.CustomUserDetails;
@@ -12,13 +13,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     
     @Autowired
     private UserRepository userRepo;
-    
+        
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
-        }
+        }        
         return new CustomUserDetails(user);        
     }
 

@@ -6,21 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
  
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    
     @Autowired
     private DataSource dataSource;
-     
+         
     @Bean
+    @Override
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
     }
@@ -34,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());         
+        authProvider.setPasswordEncoder(passwordEncoder());     
         return authProvider;
     }
  
@@ -42,18 +47,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
- 
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/users").authenticated()
-            .anyRequest().permitAll()
+            .antMatchers("/", "/static/**", "/index", "/showBooks", "/login", "/css/**",
+                    "/register", "/img/**",  "/webjars/**", "/registerSuccess").permitAll()                
+            .antMatchers("ownPage").hasAnyAuthority("patron", "librarian")
+            .antMatchers("/new").hasAnyAuthority("librarian")
+            .antMatchers("/edit/**").hasAnyAuthority("librarian")
+            .antMatchers("/delete/**").hasAuthority("librarian")
+            .anyRequest().authenticated()
             .and()
             .formLogin()
                 .usernameParameter("username")
+                .passwordParameter("password")
                 .defaultSuccessUrl("/ownPage")
                 .permitAll()
             .and()
             .logout().logoutSuccessUrl("/").permitAll();
-    }    
-}
+        http.sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+    }
+    
+
+ 
+}    

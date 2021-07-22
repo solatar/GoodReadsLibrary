@@ -2,11 +2,12 @@
 body {
   background-color: #79d2a6;
   font-family: Verdana, Helvetica, sans-serif;
+  text-align: center;
 }
 
 h2 {
   color: #0d261a;
-  text-align: left;
+  text-align: center;
 }
 
 table {
@@ -22,4 +23,8 @@ th, td {
 
 tr:nth-child(even) {
     background-color: #d9f2e6;
+}
+
+.center {
+    margin:0 auto;
 }

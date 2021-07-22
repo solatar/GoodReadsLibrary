@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <title>Home page</title>
+        <title>GoodReads Library home</title>
         <meta charset="UTF-8">
         <style>
         body {
-          background-image: url('eugenio-mazzone.jpg');
+          background-image: url('img/eugenio-mazzone.jpg');
         }
         </style>
-        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
         <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div class="container text-center">
-            <h1>Welcome to goodReads Library!</h1>
+            <h1>Welcome to GoodReads Library!</h1>
             <a href="showBooks">Show books</a>
-            <p>Click <a href="loginPage">here</a> to log in to your account.</p>
+            <p>Click <a href="login">here</a> to log in to your account.</p>
             <p>Have no account? <a href="register">Create</a> one. </p>
         </div>
     </body>
