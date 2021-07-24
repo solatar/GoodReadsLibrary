@@ -1,7 +1,6 @@
 package library.controller;
 
 import java.util.List;
-import java.util.Optional;
 import library.entity.Loan;
 import library.entity.User;
 import library.repository.BookRepository;
@@ -16,9 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
 import library.entity.Role;
-import library.entity.UserRole;
 import library.repository.RoleRepository;
 import library.repository.UserRoleRepository;
+import library.service.UserRoleService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -41,7 +40,11 @@ public class LibraryController {
     @Autowired
     RoleRepository roleRepo;
     
-    @Autowired UserRoleRepository urRepo;
+    @Autowired 
+    UserRoleRepository urRepo;
+    
+    @Autowired
+    UserRoleService urService;
 
     @GetMapping("/index")
     public String showHmePage() {
@@ -63,15 +66,12 @@ public class LibraryController {
     
     @PostMapping("/processRegister")
     public String processRegister(User user) {     
-        System.out.println(user.getUsername());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         Role patron = roleRepo.getOne(1);
         user.getRoles().add(patron);
-        UserRole ur = new UserRole(user, patron);
         userRepo.save(user);
-        urRepo.save(ur);      
         return "registerSuccess";
     }   
     
@@ -93,7 +93,5 @@ public class LibraryController {
     @PostMapping("/login")
     public String defaultAfterLogin(HttpServletRequest request) {
         return "ownPage";
-    }  
-    
-
+    }     
 }

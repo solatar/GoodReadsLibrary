@@ -7,35 +7,35 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class UserRoleKey implements Serializable {
 
-    private String userId;
-    
-    private String roleId;
+    private int userId;    
+    private int roleId;
     
     public UserRoleKey() {
         
     }
 
-    public UserRoleKey(String userId, String roleId) {
+    public UserRoleKey(int userId, int roleId) {
         this.userId = userId;
         this.roleId = roleId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public String getRoleId() {
+    public int getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 5;
@@ -63,6 +63,11 @@ public class UserRoleKey implements Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "userId: " + this.userId + ", roleId: " + this.roleId;
     }
        
 }

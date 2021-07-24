@@ -1,15 +1,14 @@
 package library.service;
 
-
-import library.repository.RoleRepository;
-import java.util.List;
-import library.entity.Role;
+import library.entity.UserRole;
+import library.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RoleService {
+public class UserRoleService {
     
     @Autowired
-    RoleRepository roleRepo;   
+    UserRoleRepository urRepo;
+    
 }

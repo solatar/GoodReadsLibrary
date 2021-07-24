@@ -8,7 +8,7 @@ public class Role {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     
     @Column(name="description")
     private String description;
@@ -22,11 +22,11 @@ public class Role {
     }   
     
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -37,4 +37,10 @@ public class Role {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Role possessed: " +this.description;
+    }
+    
 }

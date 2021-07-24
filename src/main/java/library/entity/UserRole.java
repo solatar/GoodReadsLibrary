@@ -18,20 +18,20 @@ import org.springframework.stereotype.Component;
 public class UserRole implements Serializable {
 
     @EmbeddedId
-    private UserRoleKey id;
+    private UserRoleKey id = new UserRoleKey();
     
     @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id")
-    User user;
+    private User user;
 
     @ManyToOne
     @MapsId("roleId")
     @JoinColumn(name = "role_id")
-    Role role;
+    private Role role;
     
     public UserRole() {
-        
+        System.out.println(this.id);
     }
 
     public UserRole(User user, Role role) {
@@ -66,7 +66,7 @@ public class UserRole implements Serializable {
 
     @Override
     public String toString() {
-        return "User: " + this.user + ", role: " +this.role;
+        return this.user + ", " +this.role;
     }
       
     

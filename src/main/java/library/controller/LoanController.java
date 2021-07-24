@@ -54,6 +54,5 @@ public class LoanController {
         borrowed.setStatus("unavailable");
         bookRepo.save(borrowed);
         return "confirmation";        
-    }  
-
+    } 
 }

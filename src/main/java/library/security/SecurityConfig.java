@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/", "/static/**", "/index", "/showBooks", "/login", "/css/**",
-                    "/register", "/img/**",  "/webjars/**", "/registerSuccess").permitAll()                
+                    "/register", "/img/**",  "/webjars/**", "/registerSuccess", "/processRegister").permitAll()                
             .antMatchers("ownPage").hasAnyAuthority("patron", "librarian")
             .antMatchers("/new").hasAnyAuthority("librarian")
             .antMatchers("/edit/**").hasAnyAuthority("librarian")
@@ -60,6 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated()
             .and()
             .formLogin()
+                .loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/ownPage")
