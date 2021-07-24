@@ -10,11 +10,12 @@ $ sudo apt-get install postgresql
 Check the status:
 ```
 $ sudo -u postgres psql postgres
-```
+
 psql (10.17 (Ubuntu 10.17-0ubuntu0.18.04.1))
 Type "help" for help.
+```
 
-Set the password for user postgres:
+Set the password for the user postgres:
 ```
 postgres=# \password postgres
 Enter new password: 
