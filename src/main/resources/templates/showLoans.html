@@ -10,28 +10,25 @@
 <body>
 <div>
     <div>
-        <h2>List of library patrons and librarians</h2>
+        <h2>List of all loans</h2>
     </div>
     <div align="center">
         <table class="rcorners">
             <thead class="thead-dark">
                 <tr>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>Edit</th> 
+                    <th>Book</th>
+                    <th>Due Date</th>
+                    <th>Borrowed by</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="user: ${listUsers}">
-                    <td th:text="${user.username}">Username</td>
-                    <td th:text="${user.roles}">Role</td>
-                    <td><a th:href="@{/editAuthorities/{id}(id=${user.id})}">Edit</a></td>
-
+                <tr th:each="loan: ${allLoans}">
+                    <td th:text="${loan.Book}">Book</td>
+                    <td th:text="${loan.dueDate}">Due Date</td>
+                    <td th:text="${loan.user}">Borrowed by</td>
                 </tr>
             </tbody>
         </table>
-        <p><a href="register">Add a new user</a></p>
- 
     </div>
     <div>
         <form th:action="@{/logout}" method="post">

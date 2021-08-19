@@ -17,9 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import library.entity.Role;
 import library.repository.RoleRepository;
 import library.repository.UserRoleRepository;
+import library.service.CustomUserDetailsService;
 import library.service.UserRoleService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @Controller
@@ -45,6 +47,9 @@ public class LibraryController {
     
     @Autowired
     UserRoleService urService;
+    
+    @Autowired
+    CustomUserDetailsService custService;
 
     @GetMapping("/index")
     public String showHmePage() {
@@ -94,4 +99,30 @@ public class LibraryController {
     public String defaultAfterLogin(HttpServletRequest request) {
         return "ownPage";
     }     
-}
+    
+    @GetMapping("/users")
+    public String listUsers(Model model) {
+        List listUsers = custService.findAll();
+        model.addAttribute("listUsers", listUsers);
+
+        return "users";
+    }
+    
+    @GetMapping("/editAuthorities/{id}")
+    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+        User user = userRepo.getOne(id);
+        model.addAttribute("user", user);
+        return "editAuthorities";
+    }
+    
+    @PostMapping("/addAuthority/{id}")
+    public String updateUser(@PathVariable("id") int id, Model model) {
+        User user = userRepo.getOne(id);
+        Role role = roleRepo.getOne(2);
+        user.getRoles().add(role);
+        userRepo.save(user);
+        System.out.println(user);
+        return "redirect:/users";    
+    }    
+}   
+

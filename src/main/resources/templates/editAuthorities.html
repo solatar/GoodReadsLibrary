@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Edit authorities</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="rcorners" align="center">
+            <a style="color: heather" th:href="@{/}">Home</a>
+            <h2>Edit users' authorities</h2>
+            <form th:action="@{/addAuthority/{id}(id=${user.id})}" th:object="${user}" method="post">
+                Selected user: <span th:text="${user.username}"></span><br>
+                Add librarian's authority to this user?    
+                <input type="submit" value="Add authority">    
+            </form>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out" />
+            </form>
+        </div>
+    </body>
+</html>

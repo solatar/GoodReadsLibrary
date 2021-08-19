@@ -31,7 +31,7 @@ public class UserRole implements Serializable {
     private Role role;
     
     public UserRole() {
-        System.out.println(this.id);
+
     }
 
     public UserRole(User user, Role role) {

@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -23,9 +21,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Component
 @Table(name = "loans")
-@EntityListeners(AuditingEntityListener.class)
 public class Loan implements Serializable {
-
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
