@@ -1,6 +1,16 @@
 Database project simulating a(n electronic) library of recommended books.
 
-### Instructions ###
+Use the app on heroku: https://goodreads-library.herokuapp.com/
+
+The library has two types of users: patrons and librarians. Every new user has the role of patron by default. 
+
+To use the librarian's functions, you may login with these credentials: 
+
+username: Libby
+
+password: Librarian1
+
+#### Download and use the app locally ####
 
 The application has been developed on Linux Ubuntu 18.04 device. The database system is PostgreSQL.
 Install PostgreSQL:
