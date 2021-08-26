@@ -35,8 +35,7 @@ public class Book implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-    
+    }    
 
     public String getAuthor() {
         return author;

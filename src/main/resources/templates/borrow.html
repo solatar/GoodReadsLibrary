@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Borrowing form - GoodReads Library</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Borrow selected book</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    </head>
     <body>
         <div class="center">
             <form action="#" th:object="${book}">
@@ -26,5 +26,5 @@
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Logout" />
         </form>
-</body>
+    </body>
 </html>

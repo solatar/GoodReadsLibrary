@@ -8,6 +8,7 @@ import library.entity.User;
 import library.repository.BookRepository;
 import library.repository.LoanRepository;
 import library.repository.UserRepository;
+import library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,16 @@ public class LoanController {
     
     @Autowired
     LoanService loanService;
+    
+    @Autowired
+    BookService bookService;
+    
+    @GetMapping("/showBooks")
+    public String findBooks(Model model) {
+        List books = bookService.findAll();
+        model.addAttribute("books", books);
+        return "showBooks";
+    }
     
     @GetMapping("/borrow/{id}")
     public String showBorrowingForm(@PathVariable("id") int id, Model model) {
@@ -65,5 +76,23 @@ public class LoanController {
         List<Loan> allLoans = loanService.findAll();
         model.addAttribute("allLoans", allLoans);        
         return "showLoans";
+    }
+    
+    @GetMapping("/return/{id}")
+    public String returnConfirmation(@PathVariable("id") int id, Model model) {
+        Loan loan = loanRepo.getOne(id);
+        model.addAttribute("loan", loan);
+        return "return";
+    }
+    
+    @PostMapping("/returnLoan/{id}")
+    public String updateLoan(@PathVariable("id") int id, Model model) {
+        Loan loan = loanRepo.getOne(id);
+        System.out.println(loan);
+        Book book = loan.getBook();
+        book.setStatus("available");
+        loanRepo.deleteById(id);
+        bookRepo.save(book);
+        return "redirect:/ownPage";          
     }
 }

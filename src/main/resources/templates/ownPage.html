@@ -27,12 +27,14 @@
                     <tr>
                         <th>Book</th>
                         <th>Due Date</th>
+                        <th>Return loan</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="loan: ${loans}">
                         <td th:text="${loan.Book}">Book</td>
                         <td th:text="${loan.dueDate}">Due Date</td>
+                        <td><a th:href="@{/return/{id}(id=${loan.id})}">Return loan</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -40,7 +42,8 @@
         </div>
         <div sec:authorize="hasAuthority('librarian')">
             <p><a href="users">Show all users</a></p>
-            <p><a href="showLoans">Show all loans</a></p>             
+            <p><a href="showLoans">Show all loans</a></p>     
+            <p><a href="addBooks">Add books to the library collection</a></p>
         </div>
     </div>
 </body>

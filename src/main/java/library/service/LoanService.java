@@ -21,7 +21,5 @@ public class LoanService  {
     public List<Loan> findByUser(User user) {
        var usersLoans = (List<Loan>) loanRepo.findByUser(user);
        return usersLoans;
-    }
-     
-  
+    }   
 }

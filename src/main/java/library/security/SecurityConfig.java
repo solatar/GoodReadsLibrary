@@ -50,9 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
             .antMatchers("/", "/static/**", "/index", "/showBooks", "/login", "/css/**",
                     "/register", "/img/**",  "/webjars/**", "/registerSuccess", "/processRegister").permitAll()                
-            .antMatchers("/ownPage").hasAnyAuthority("patron", "librarian")
-            .antMatchers("/users").hasAnyAuthority("librarian")
-            .antMatchers("/addAuthorities").hasAnyAuthority("librarian")
+            .antMatchers("/ownPage", "/borrow", "/return").hasAnyAuthority("patron", "librarian")
+            .antMatchers("/users", "/showLoans", "/addBooks", "/addAuthorities").hasAnyAuthority("librarian")
             .anyRequest().authenticated()
             .and()
             .formLogin()

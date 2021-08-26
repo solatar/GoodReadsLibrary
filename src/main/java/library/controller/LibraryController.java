@@ -14,6 +14,7 @@ import library.service.LoanService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
+import library.entity.Book;
 import library.entity.Role;
 import library.repository.RoleRepository;
 import library.repository.UserRoleRepository;
@@ -56,13 +57,7 @@ public class LibraryController {
         return "home";
     }
     
-    @GetMapping("/showBooks")
-    public String findBooks(Model model) {
-        List books = bookService.findAll();
-        model.addAttribute("books", books);
-        return "showBooks";
-    }
-    
+  
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
@@ -121,8 +116,20 @@ public class LibraryController {
         Role role = roleRepo.getOne(2);
         user.getRoles().add(role);
         userRepo.save(user);
-        System.out.println(user);
         return "redirect:/users";    
     }    
+    
+    @GetMapping("/addBooks")
+    public String showBookRegistrationForm(Model model) {
+        model.addAttribute("book", new Book());
+        return "addBooks";        
+    }
+    
+    @PostMapping("/addBook")
+    public String addBook(Book book) {
+        book.setStatus("available");
+        bookRepo.save(book);
+        return "redirect:/showBooks";
+    }
 }   
 
