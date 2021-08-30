@@ -13,14 +13,12 @@
         <h2>List of books in our library</h2>
             <table class="rcorners">
                 <tr>
-                    <th>Id</th>
                     <th>Author</th>
                     <th>Title</th>
                     <th>Availability</th>
                     <th>Borrow</th>
                 </tr>            
                 <tr th:each="book : ${books}">    
-                    <td th:text="${book.id}">Id</td>
                     <td th:text="${book.author}">Author</td>
                     <td th:text="${book.title}">Title</td>
                     <td th:text="${book.status}">Availability</td>

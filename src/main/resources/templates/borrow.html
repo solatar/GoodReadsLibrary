@@ -10,17 +10,16 @@
     <body>
         <div class="center">
             <form action="#" th:object="${book}">
-                Selected book: <span th:text="${book.title}"></span>
+                <h3>Selected book: <span th:text="${book.title}"></span></h3>
             </form>
-            <form action="#" th:action="@{/processBorrow/{id}(id=${book.id})}" th:object="${loan}"
+            <form th:action="@{/processBorrow/{id}(id=${book.id})}" th:object="${loan}"
                 method="post" style="max-width: 600px; margin: 0 auto;">
-                <label class="col-4 col-form-label">Loan period is one month </label>
+                <label class="col-8">Loan period is one month </label>
                 <input type="hidden" th:field="*{dueDate}" class="form-control">
                 <p>Today is</p>
-                <p th:text="${#temporals.format(localDate, 'dd-MM-yyyy')}"></p> 
-                <div>
-                    <button type="submit" class="btn btn-primary">Borrow</button>
-                </div>
+                <h3 th:text="${#temporals.format(localDate, 'dd-MM-yyyy')}"></h3> 
+                <p>After due date you are advised to return the loan or you'll face a penalty</p>
+                <button type="submit" class="btn btn-primary">Borrow</button>
             </form>     
         </div>
         <form th:action="@{/logout}" method="post">

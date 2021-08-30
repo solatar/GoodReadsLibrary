@@ -63,6 +63,6 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return this.author + ": " +this.title;
+        return this.author + ": " + this.title;
     }
 }

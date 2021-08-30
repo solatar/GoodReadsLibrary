@@ -1,8 +1,26 @@
-Database project simulating a(n electronic) library of recommended books.
+Database project simulating an electronic library.
 
 Use the app on heroku: https://goodreads-library.herokuapp.com/
 
 The library has two types of users: patrons and librarians. Every new user has the role of patron by default. 
+
+A patron can:
+
+- create an user account
+
+- browse the library collection
+
+- borrow books and return them (after borrowing, user is supposed to get access to the e-book but this function is not implemented here)
+
+A librarian can:
+
+- see the list of  all users and their roles
+
+- add librarian's privileges to another user
+
+- see the list of all loans and by whom they were borrowed
+
+- add new books to the library collection
 
 To use the librarian's functions, you may login with these credentials: 
 

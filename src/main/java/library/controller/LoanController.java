@@ -88,8 +88,9 @@ public class LoanController {
     @PostMapping("/returnLoan/{id}")
     public String updateLoan(@PathVariable("id") int id, Model model) {
         Loan loan = loanRepo.getOne(id);
-        System.out.println(loan);
-        Book book = loan.getBook();
+        int bookId = loanService.findBookId(id);
+        Book book = bookRepo.getOne(bookId);
+        System.out.println("BookId: " +book.getId());
         book.setStatus("available");
         loanRepo.deleteById(id);
         bookRepo.save(book);

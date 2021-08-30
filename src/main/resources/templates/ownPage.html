@@ -9,18 +9,17 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-        <div align="center">	
-            <div sec:authorize="isAuthenticated()">
-                Welcome <b><span sec:authentication="name">Username</span></b><br>		
-                You are logged in as <i><span sec:authentication="principal.authorities">Roles</span></i>
-            </div>		
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Logout" />
-            </form>
+    <div align="center">	
+        <div sec:authorize="isAuthenticated()">
+            Welcome <h3><span sec:authentication="name">Username</span></h3><br>		
+            You are logged in as <h3><span sec:authentication="principal.authorities">Roles</span></h3>
+        </div>		
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Sign out<button/>
+        </form>
         <div>
-            <h1>Your loans</h1>
+            <h3>Your loans</h3>
         </div>
-
         <div>
             <table class="rcorners">
                 <thead class="thead-dark">

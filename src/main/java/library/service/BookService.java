@@ -18,8 +18,5 @@ public class BookService implements IBookService {
        var books = (List<Book>) bookRepo.findAll();       
        return books;
     }
-
-
-
-    
+ 
 }
