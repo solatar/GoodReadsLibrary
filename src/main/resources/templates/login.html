@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <title>Login to your library account</title>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta charset="UTF-8">
         <link rel="stylesheet" th:href="@{/css/style.css}">
         <script src="https://ajax googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body style="margin:30px">
+        <div sec:authorize="isAuthenticated()">
+            <p><span sec:authentication="name">Username</span>, you are already logged in.</p>
+            <p><a href="ownPage">Go to your own page</a></p>            
+        </div>
         <div class="rcorners">
-            <h3>Sign In</h3>
+            <h2>Sign In</h2>
             <div th:if="${param.error}">
                 <p style="color: red">UserName or PassWord is wrong. Please check again!</p>
             </div>
@@ -20,11 +23,11 @@
                 <h3>Logged out.</h3>
             </div>
             <form th:action="@{/login}" method="post">
-                <div class="col-20">
+                <div>
                     <label for="username">Username: </label>
                     <input type="text" class="form-control" id="username" placeholder="Enter UserName" name="username"/>
                 </div>
-                <div class="col-20">
+                <div>
                     <label for="password">Password: </label>
                     <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password"/>
                 </div>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">  
 <head>
     <meta charset="utf-8">
@@ -11,11 +12,11 @@
 <body>
     <div align="center">	
         <div sec:authorize="isAuthenticated()">
-            Welcome <h3><span sec:authentication="name">Username</span></h3><br>		
-            You are logged in as <h3><span sec:authentication="principal.authorities">Roles</span></h3>
+            <h2>Welcome, <span sec:authentication="name">Username</span>. 		
+            You are logged in as <span sec:authentication="principal.authorities">Roles</span></h2>
         </div>		
         <form th:action="@{/logout}" method="post">
-            <button type="submit">Sign out<button/>
+            <button type="submit">Sign out</button> 
         </form>
         <div>
             <h3>Your loans</h3>

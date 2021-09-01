@@ -10,10 +10,10 @@
     <body>
         <div class="center">
             <form action="#" th:object="${book}">
-                <h3>Selected book: <span th:text="${book.title}"></span></h3>
+                <h2>Selected book: <span th:text="${book.title}"></span></h2>
             </form>
             <form th:action="@{/processBorrow/{id}(id=${book.id})}" th:object="${loan}"
-                method="post" style="max-width: 600px; margin: 0 auto;">
+                method="post">
                 <label class="col-8">Loan period is one month </label>
                 <input type="hidden" th:field="*{dueDate}" class="form-control">
                 <p>Today is</p>
@@ -22,8 +22,5 @@
                 <button type="submit" class="btn btn-primary">Borrow</button>
             </form>     
         </div>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Logout" />
-        </form>
     </body>
 </html>

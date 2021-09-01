@@ -17,7 +17,7 @@ table {
 }  
 
 th, td {
-  padding: 10px;
+  padding: 0.625em;
   text-align: center;
   border-bottom: 2px solid black;
 }
@@ -32,16 +32,16 @@ tr:nth-child(even) {
 
 .rcorners {
     align: center;
-    border-radius: 25px;
+    border-radius: 1.5625em;
     border: 2px solid #2d8659;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 0.625em;
+    margin-bottom: 0.9375em;
 }
 
 label, button {
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 15px;    
+    padding: 0.9375em;
+    margin-bottom: 0.9375em;
+    border-radius: 0.9375em;    
 }
 
 a {
@@ -49,13 +49,13 @@ a {
 }
 
 .col-8 {
-    width: 450px;
+    width: 28.125em;
 }
 
 input {
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 15px;    
-    width: 400px;
+    padding: 0.9375em; 
+    margin-bottom: 0.9375em; 
+    border-radius: 0.9375em; 
+    width: 25em;
 }
 
