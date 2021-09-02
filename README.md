@@ -28,6 +28,8 @@ username: Libby
 
 password: Librarian1
 
+The Heroku version of the app persists the data so you may add users, books and loans permanently. The Github version drops the database tables and recreates them every time the program is run. 
+
 #### Download and use the app locally ####
 
 The application has been developed on Linux Ubuntu 18.04 device. The database system is PostgreSQL.
@@ -54,7 +56,7 @@ Create the database:
 ```
 $ sudo -u postgres createdb library
 ```
-Exit psql with \q. Download the repository and cd to Library. Run the app:
+Exit psql with \q. Download and extract the repository and cd to GoodReadsLibrary-main. Run the app:
 ```
 mvn spring-boot:run
 ```
