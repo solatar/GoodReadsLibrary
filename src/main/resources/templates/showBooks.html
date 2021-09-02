@@ -26,6 +26,11 @@
                 </tr>
             </table>
             <p><a href="/">Home</a></p>
+            <div sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit">Sign out</button> 
+                </form>
+            </div>    
         </div>
     </body>
 </html>

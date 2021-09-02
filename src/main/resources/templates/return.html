@@ -13,12 +13,9 @@
             <a style="color: heather" th:href="@{/}">Home</a>
             <h2>Confirm return</h2>
             <form th:action="@{/returnLoan/{id}(id=${loan.id})}" th:object="${loan}" method="post">
-                Selected loan: <span th:text="${loan.Book}"></span><br>
-                Return this loan? 
-                <input type="submit" value="Return">    
-            </form>
-            <form th:action="@{/logout}" method="post">
-                <button type="submit">Sign out</button> 
+                <p>Selected loan: <span th:text="${loan.Book}"></span></p>
+                <p>Return this loan?</p>
+                <button type="submit">Return</button>  
             </form>
         </div>
     </body>

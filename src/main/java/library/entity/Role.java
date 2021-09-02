@@ -1,10 +1,11 @@
 package library.entity;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Role implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +42,5 @@ public class Role {
     @Override
     public String toString() {
         return "Role possessed: " +this.description;
-    }
-    
+    }    
 }

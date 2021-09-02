@@ -90,7 +90,6 @@ public class LoanController {
         Loan loan = loanRepo.getOne(id);
         int bookId = loanService.findBookId(id);
         Book book = bookRepo.getOne(bookId);
-        System.out.println("BookId: " +book.getId());
         book.setStatus("available");
         loanRepo.deleteById(id);
         bookRepo.save(book);

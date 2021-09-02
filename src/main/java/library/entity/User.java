@@ -29,7 +29,7 @@ public class User implements Serializable {
     @Column(name = "username", nullable = false)
     private String username;
     
-    @Column(name = "password", length = 125, nullable = false)
+    @Column(name = "password", length = 255, nullable = false)
     private String password;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy="user")

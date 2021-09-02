@@ -16,8 +16,6 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
-
-
 @Entity
 @Component
 @Table(name = "loans")
@@ -35,7 +33,7 @@ public class Loan implements Serializable {
     @JoinColumn(name="user_id", referencedColumnName = "id", nullable = false)
     private User user;
     
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "due_date", nullable = false)
     private LocalDate dueDate;       
     
@@ -85,7 +83,5 @@ public class Loan implements Serializable {
     @Override
     public String toString() {
         return this.book + ", borrowed by: " + this.user + " due date: " + this.dueDate;
-    }
-    
-    
+    }   
 }

@@ -16,7 +16,7 @@ table {
   text-align: center;
 }  
 
-th, td {
+th, td, tr {
   padding: 0.625em;
   text-align: center;
   border-bottom: 2px solid black;
@@ -46,10 +46,6 @@ label, button {
 
 a {
    color: #800060; 
-}
-
-.col-8 {
-    width: 28.125em;
 }
 
 input {

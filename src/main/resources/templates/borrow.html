@@ -14,7 +14,7 @@
             </form>
             <form th:action="@{/processBorrow/{id}(id=${book.id})}" th:object="${loan}"
                 method="post">
-                <label class="col-8">Loan period is one month </label>
+                <label>Loan period is one month </label>
                 <input type="hidden" th:field="*{dueDate}" class="form-control">
                 <p>Today is</p>
                 <h3 th:text="${#temporals.format(localDate, 'dd-MM-yyyy')}"></h3> 
