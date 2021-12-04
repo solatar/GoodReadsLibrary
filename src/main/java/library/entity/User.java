@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -27,9 +28,11 @@ public class User implements Serializable {
     private int id;
     
     @Column(name = "username", nullable = false)
+    @NotBlank(message = "Username may not be blank")
     private String username;
     
     @Column(name = "password", length = 255, nullable = false)
+    @NotBlank(message = "Password may not be blank")
     private String password;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy="user")

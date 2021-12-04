@@ -16,9 +16,8 @@
             <form th:action="@{/addAuthority/{id}(id=${user.id})}" th:object="${user}" method="post">
                 Selected user: <span th:text="${user.username}"></span><br>
                 Add librarian's authority to this user?    
-                <input type="submit" value="Add authority">    
+                <input type="submit" value="Add authority" style="width:10em">    
             </form>
-            <p><a href="ownPage">Go back</a></p>
         </div>
     </body>
 </html>

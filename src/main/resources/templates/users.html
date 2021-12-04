@@ -25,7 +25,7 @@
                 <tr th:each="user: ${listUsers}">
                     <td th:text="${user.username}">Username</td>
                     <td th:text="${user.roles}">Role</td>
-                    <td><a th:href="@{/editAuthorities/{id}(id=${user.id})}">Edit</a></td>
+                    <td th:if="${#lists.size(user.roles) == 1}"><a th:href="@{/editAuthorities/{id}(id=${user.id})}">Edit</a></td>
                 </tr>
             </tbody>
         </table>

@@ -14,6 +14,7 @@ import library.service.LoanService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import library.entity.Book;
 import library.entity.Role;
 import library.repository.RoleRepository;
@@ -22,6 +23,7 @@ import library.service.CustomUserDetailsService;
 import library.service.UserRoleService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -65,7 +67,10 @@ public class LibraryController {
     }
     
     @PostMapping("/processRegister")
-    public String processRegister(User user) {     
+    public String processRegister(@Valid User user, BindingResult result) {     
+        if (result.hasErrors()) {
+            return "register";
+        }        
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -126,7 +131,10 @@ public class LibraryController {
     }
     
     @PostMapping("/addBook")
-    public String addBook(Book book) {
+    public String addBook(@Valid Book book, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addBooks";
+        }
         book.setStatus("available");
         bookRepo.save(book);
         return "redirect:/showBooks";
