@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/", "/static/**", "/index", "/showBooks", "/login", "/css/**",
                     "/register", "/img/**",  "/webjars/**", "/registerSuccess", "/processRegister").permitAll()                
             .antMatchers("/ownPage", "/borrow", "/return").hasAnyAuthority("patron", "librarian")
-            .antMatchers("/users", "/showLoans", "/addBooks", "/addAuthorities").hasAnyAuthority("librarian")
+            .antMatchers("/users", "/showLoans", "/addBooks", "/editAuthorities", "/deleteBook").hasAnyAuthority("librarian")
             .anyRequest().authenticated()
             .and()
             .formLogin()

@@ -139,5 +139,19 @@ public class LibraryController {
         bookRepo.save(book);
         return "redirect:/showBooks";
     }
+    
+    @GetMapping("/deleteBook/{id}")
+    public String showRemoveBookForm(@PathVariable("id") int id, Model model) {
+        Book book = bookRepo.getOne(id);
+        model.addAttribute("book", book);
+        return "deleteBook";        
+    }
+    
+    @PostMapping("/remove/{id}")
+    public String removeBook(@PathVariable("id") int id, Model model) {
+        bookRepo.deleteById(id);        
+        return "redirect:/showBooks";    
+    }    
+    
 }   
 

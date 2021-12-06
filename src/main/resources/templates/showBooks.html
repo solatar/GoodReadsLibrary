@@ -22,7 +22,8 @@
                     <td th:text="${book.author}">Author</td>
                     <td th:text="${book.title}">Title</td>
                     <td th:text="${book.status}">Availability</td>
-                    <td><span th:if="${book.status == 'available'}"><a th:href="@{/borrow/{id}(id=${book.id})}">Borrow</a></span></td>                    
+                    <td><span th:if="${book.status == 'available'}"><a th:href="@{/borrow/{id}(id=${book.id})}">Borrow</a></span></td>          
+                    <td sec:authorize="hasAuthority('librarian')"><a th:href="@{/deleteBook/{id}(id=${book.id})}">Delete Book</a></td>
                 </tr>
             </table>
             <p><a href="/">Home</a></p>
