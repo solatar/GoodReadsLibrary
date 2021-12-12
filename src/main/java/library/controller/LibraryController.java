@@ -147,11 +147,24 @@ public class LibraryController {
         return "deleteBook";        
     }
     
-    @PostMapping("/remove/{id}")
+    @PostMapping("/removeBook/{id}")
     public String removeBook(@PathVariable("id") int id, Model model) {
         bookRepo.deleteById(id);        
         return "redirect:/showBooks";    
     }    
     
+    @GetMapping("/deleteAccount/{id}")
+    public String showDeleteAccountForm(@PathVariable("id") int id, Model model) {
+        User user = userRepo.getOne(id);
+        model.addAttribute("user", user);
+        return "deleteAccount";        
+    }
+    
+    @PostMapping("/deleteAccount/{id}")
+    public String removeAccount(@PathVariable("id") int id, Model model) {      
+        User user = userRepo.getOne(id);
+        userRepo.deleteById(id);        
+        return "redirect:/users";    
+    }        
 }   
 

@@ -11,6 +11,7 @@
 <div align="center">
     <div>
         <h2>List of library patrons and librarians</h2>
+        <h5>Note: account cannot be deleted if the user has loans</h5>
     </div>
     <div>
         <table class="rcorners">
@@ -26,6 +27,7 @@
                     <td th:text="${user.username}">Username</td>
                     <td th:text="${user.roles}">Role</td>
                     <td th:if="${#lists.size(user.roles) == 1}"><a th:href="@{/editAuthorities/{id}(id=${user.id})}">Edit</a></td>
+                    <td th:if="${#lists.size(user.loans) == 0}"><a th:href="@{/deleteAccount/{id}(id=${user.id})}">Delete</a></td>
                 </tr>
             </tbody>
         </table>

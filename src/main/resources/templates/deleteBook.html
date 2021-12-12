@@ -10,7 +10,7 @@
         <div class="rcorners" align="center">
             <a style="color: heather" th:href="@{/}">Home</a>
             <h2>Confirm delete</h2>
-            <form th:action="@{/remove/{id}(id=${book.id})}" th:object="${book}" method="post">
+            <form th:action="@{/removeBook/{id}(id=${book.id})}" th:object="${book}" method="post">
                 <p>Selected book: <span th:text="${book.title}"></span></p>
                 <p>Remove this book from the library collection?</p>
                 <button type="submit">Remove</button>  
