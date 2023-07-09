@@ -1,7 +1,5 @@
 Database project simulating an electronic library.
 
-Use the app on heroku: https://goodreads-library.herokuapp.com/
-
 The library has two types of users: patrons and librarians. Every new user has the role of patron by default. 
 
 A patron can:
@@ -61,3 +59,5 @@ Exit psql with \q. Download and extract the repository and cd to GoodReadsLibrar
 mvn spring-boot:run
 ```
 In a browser, navigate to localhost:8080 to use the app.
+
+Update 2023: the app was previously published on Heroku. Currently, online version is not available since Heroku has changed their terms and conditions.
